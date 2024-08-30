@@ -1,0 +1,43 @@
+version: "3.7"
+services:
+  core_postgresql:
+    image: postgres:14
+    container_name: core-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "core"
+      POSTGRES_MAX_CONNECTIONS: "200"
+    command: [
+      "postgres",
+      "-c", "max_connections=200"
+    ]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    image: python:3.10-slim
+    container_name: core_app
+    command: >
+      /bin/sh -c "pip install -r requirements.txt &&
+      cd migrations && alembic upgrade head && cd .. &&
+      uvicorn api.main:app --host 0.0.0.0 --port 8080 --reload"
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    environment:
+      CORE_DB_TYPE: "postgresql"
+      CORE_DB_USERNAME: "root"
+      CORE_DB_PASSWORD: "password"
+      CORE_DB_HOST: "core_postgresql"
+      CORE_DB_PORT: "5432"
+      CORE_DB_NAME: "core"
+    depends_on:
+      - core_postgresql
+
+volumes:
+  postgres_data:
