@@ -9,7 +9,6 @@ This project implements a simple Post-Comments Service, allowing users to create
 
 - **Post Creation**: Users can create text-based posts.
 - **Commenting System**: Users can comment on posts. Each post can have multiple comments, and a comment can have child comments.
-- **Rich Text Support**: Optional rich text support in comments (e.g., bold, italics, hyperlinks) is included as a bonus feature.
 
 ## Tech Stack
 
