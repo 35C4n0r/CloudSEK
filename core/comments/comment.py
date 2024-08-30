@@ -9,8 +9,11 @@ class Comment(BaseModel):
     id: Optional[UUID] = None
     user_id: UUID
     content: str
+
+    # Comments can have child comments
     is_child_comment: bool
     parent_id: Optional[UUID] = None
+
     post_id: UUID
     username: Optional[str] = None
     created_at: Optional[datetime] = None
