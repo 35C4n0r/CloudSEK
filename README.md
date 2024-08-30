@@ -53,7 +53,7 @@ The service is structured into several core components:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/35C4n0r/post-comments-service.git
+    git clone https://github.com/35C4n0r/CloudSEK.git
     cd post-comments-service
     ```
 
