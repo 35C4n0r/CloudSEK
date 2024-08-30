@@ -38,7 +38,6 @@ The service is structured into several core components:
 │   ├── users                # User-related logic
 │   ├── utils                # Utility functions
 ├── migrations               # Database migrations
-├── .venv                    # Python virtual environment
 └── README.md                # Project documentation
 ```
 
